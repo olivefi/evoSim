@@ -13,5 +13,9 @@ class Map:
     def updateMap(self):
         for c in self.creatures:
             c.changeBehavior()
-            c.bound()
             c.move()
+            c.lifetime += 0.1
+            #if a creature's energy is less than 0, kill it
+            if c.energy < 0:
+                print("someone should die")
+                self.creatures.remove(c)
