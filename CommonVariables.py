@@ -4,5 +4,5 @@ import math
 
 map_size = [1000, 700]
 num_creatures = 10
-maxspeed = 2
+maxspeed = 5
 maxturnspeed = math.pi/6

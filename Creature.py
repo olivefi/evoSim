@@ -18,6 +18,10 @@ class Creature:
         self.x += math.cos(self.rotation)*self.speed
         self.y += math.sin(self.rotation)*self.speed
 
+        #lose some speed
+        self.speed *= 0.95
+        self.turnspeed *= 0.95
+
         #ensure the creature is still inside of boundaries
         self.x = self.x % map_size[0]
         self.y = self.y % map_size[1]
@@ -34,5 +38,5 @@ class Creature:
 
     #this function ensures the creatures are never moving too fast
     def bound(self):
-        np.clip(self.speed, 0, maxspeed)
-        np.clip(self.turnspeed, -maxturnspeed, maxturnspeed)
+        self.speed = np.clip(self.speed, 0, maxspeed)
+        self.turnspeed = np.clip(self.turnspeed, -maxturnspeed, maxturnspeed)
