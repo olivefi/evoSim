@@ -8,7 +8,7 @@ class Creature:
         self.speed = 0
         self.turnspeed = 0
         self.energy = 100
-        self.size = 9
+        self.size = creaturesize
         self.rotation = random.uniform(0,2*math.pi)
         self.lifetime = 0
     
@@ -43,4 +43,5 @@ class Creature:
             self.y += map_size[1]
         
         #lose energy based on speed and a flat value
-        self.energy -= (self.speed+self.turnspeed+1)/10
+        self.energy -= (self.speed+self.turnspeed+1)/fps
+        self.lifetime += 1/fps

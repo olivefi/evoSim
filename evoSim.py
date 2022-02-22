@@ -5,8 +5,8 @@ from Renderer import *
 import time
 
 m = Map(0,0)
-
+r = Renderer()
 while(True):
     m.updateMap()
-    renderMap(m)
-    time.sleep(0.1)
+    r.updateSliders()
+    r.renderMap(m)
