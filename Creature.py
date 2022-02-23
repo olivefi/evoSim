@@ -1,16 +1,17 @@
 from CommonVariables import *
+from Food import *
 
 class Creature:
     #initialize a creature with random coordinates, zero speed, 100 energy
     def __init__(self):
         self.x = random.uniform(0, map_size[0])
         self.y = random.uniform(0, map_size[1])
-        self.speed = 0
-        self.turnspeed = 0
-        self.energy = 100
+        self.speed = 0.
+        self.turnspeed = 0.
+        self.energy = 100.
         self.size = creaturesize
         self.rotation = random.uniform(0,2*math.pi)
-        self.lifetime = 0
+        self.lifetime = 0.
     
 
     #this function is a placeholder, we will later on put the AI here to choose behaviors based on stuff
@@ -18,6 +19,12 @@ class Creature:
         self.speed += random.uniform(-0.2,0.5)
         self.turnspeed += random.uniform(-0.05,0.05)
 
+    def eat(self, food):
+        for f in food:
+            if (math.sqrt((self.x-f.x)**2 + (self.y-f.y)**2) <= f.size+self.size):
+                self.energy += f.size
+                food.remove(f)
+        self.size = np.clip(5,self.energy/10,15)
 
     #move the creature according to its current speeds
     def move(self):
@@ -37,10 +44,6 @@ class Creature:
         #ensure the creature stays on the map
         self.x = self.x % map_size[0]
         self.y = self.y % map_size[1]
-        if (self.x < 0):
-            self.x += map_size[0]
-        if (self.y < 0):
-            self.y += map_size[1]
         
         #lose energy based on speed and a flat value
         self.energy -= (self.speed+self.turnspeed+1)/fps

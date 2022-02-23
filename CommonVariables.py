@@ -11,8 +11,7 @@ maxspeed = 5
 maxturnspeed = math.pi/6
 
 #size variables
-creaturesize = 9
-eatingrange = 5
+creaturesize = 10
 
 #rendering
-fps = 30.
+fps = 20.
